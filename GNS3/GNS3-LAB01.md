@@ -223,6 +223,13 @@ from netmiko import ConnectHandler
 devices = [
   {
     "device_name": "Switch1",
+    "device_type": "cisco_ios_telnet",
+    "host": "192.168.20.1",
+    "username": "admin",
+    "password": "cisco",
+    "secret": "cisco",
+    "commands": [
+            "show ip interface brief",
     ],
   }
 }
@@ -230,6 +237,15 @@ for device in devices:
   print(f"\nconnecting now to {device['device_name']}........")
   conn = ConnectHandler(
     device_type=device["device_type"],
-
+    host=device["host"],
+    username=device[username"],
+    password=device["password"],
+    secret=device["secret"],
+)
+conn.enable()
+print(conn.send_config_set(device["commands"]))
+print(conn.send_command)"show ip interface brief"))
+conn.save_config()
+conndisconnect()
 
 ```
