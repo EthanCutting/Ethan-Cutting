@@ -31,10 +31,11 @@ sudo ip route add default via 192.168.20.1
 # DNS fix
 ```bash
 sudo nano /etc/resolv.conf
+```
 Add:
 ```bash
 nameserver 8.8.8.8
-
+```
 # LIB
 ```bash
 sudo apt update
