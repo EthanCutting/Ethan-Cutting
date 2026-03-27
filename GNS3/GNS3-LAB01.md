@@ -167,38 +167,46 @@ show ip route
 
 ---
 
-# Router two (ISP)
-interface f0/0   ! to R1
-ip address 10.0.12.2 255.255.255.252
-ip nat inside
-no shut/
+# Router two (ISP) Configuration 
+## Basic setup
+```bash
+conf t
+hostname ISP
+```
+## Interfaces
+```bash
+interface f0/0
+ ip address 10.0.12.2 255.255.255.252
+ ip nat inside
+ no shutdown
 
-interface f1/0   ! to NAT cloud
-ip address dhcp
-ip nat outside
-no shutdown
-
+interface f1/0
+ ip address dhcp
+ ip nat outside
+ no shutdown
+```
+## NAT Configuration 
+```bash
 access-list 1 permit 192.168.0.0 0.0.255.255
 access-list 1 permit 10.0.12.0 0.0.0.3
 
 ip nat inside source list 1 interface f1/0 overload
-
+```
+## Return Routes
+```bash
 ip route 192.168.10.0 255.255.255.0 10.0.12.1
 ip route 192.168.20.0 255.255.255.0 10.0.12.1
 ip route 192.168.30.0 255.255.255.0 10.0.12.1
 ip route 192.168.40.0 255.255.255.0 10.0.12.1
-
-
-
+```
+## Clear nat if issuess
+```bash
+clear ip nat translation *
+```
 ---
 
-
-# clear nat if issuess
-clear ip nat translation *
-
-
-
-# telnet testing  (scripting)
+# Telnet Configuration (scripting)
+```bash
 username admin privilege 15 secret cisco
 line vty 0 4
 password cisco
@@ -206,12 +214,11 @@ login local
 transport input telnet
 end
 wr
+```
+--
 
-
-----------------------------------------------------------------------------------------------------------------------------------------
-
-### scirpting
-""python 
+# Python Automation - Netmiko
+```python
 from netmiko import ConnectHandler
 devices = [
   {
@@ -224,4 +231,5 @@ for device in devices:
   conn = ConnectHandler(
     device_type=device["device_type"],
 
-""
+
+```
