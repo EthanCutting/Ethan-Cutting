@@ -10,7 +10,7 @@ This repository demonstrates skills across:
 
 ---
 
-## 🔍 Overview
+## Overview
 
 This project focuses on building real-world, job-relevant skills through:
 - HTB machine walkthroughs (enumeration → exploitation → privilege escalation)
@@ -20,7 +20,7 @@ This project focuses on building real-world, job-relevant skills through:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ### `/Machines`
 Detailed walkthroughs of Hack The Box machines:
@@ -85,27 +85,27 @@ Packet analysis notes and investigations:
 
 ---
 
-## 🧠 Skills Demonstrated
+## Skills Demonstrated
 
-### 🔵 Blue Team / SOC
+### Blue Team / SOC
 - Log analysis (auth.log, SSH logs)
 - Brute force & password spray detection
 - IOC identification
 - Incident investigation workflows
 
-### 🌐 Networking
+### Networking
 - VLANs and subnetting
 - DHCP, NAT, OSPF
 - Routing and switching fundamentals
 - GNS3 lab design
 
-### 🐍 Python Development
+### Python Development
 - Automation scripts
 - Network scanning tools
 - Log parsing & detection logic
 - CLI and GUI tools (Tkinter)
 
-### 🛠 Tools & Technologies
+### Tools & Technologies
 - Nmap, Gobuster
 - Wireshark
 - Linux (Ubuntu / Kali)
@@ -114,7 +114,7 @@ Packet analysis notes and investigations:
 
 ---
 
-## 🚀 Goals
+## Goals
 
 - Build SOC-ready automation tools
 - Improve Python scripting for security
@@ -124,7 +124,7 @@ Packet analysis notes and investigations:
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This repository is for **educational and ethical use only**.
 
@@ -133,7 +133,7 @@ This repository is for **educational and ethical use only**.
 
 ---
 
-## 👤 Author
+## Author
 
 Ethan Cutting  
 Cybersecurity & IT Graduate (2025)  
