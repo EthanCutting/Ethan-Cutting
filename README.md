@@ -1,85 +1,140 @@
 # Hack-The-Box-HTB
 
-This repository contains my hands-on security work, scripts, and notes developed while completing **Hack The Box (HTB)** machines, **Sherlock (Blue Team)** investigations, and custom **automation / penetration testing scripts**.
+A hands-on cybersecurity and networking portfolio showcasing practical labs, automation scripts, and real-world security workflows developed while completing Hack The Box (HTB) machines and custom lab environments.
 
-The focus of this repo is **practical, real-world security skills**, including blue-team analysis, detection engineering, and offensive security tooling.
+This repository demonstrates skills across:
+- Blue Team analysis
+- Network engineering fundamentals
+- Security automation
+- System and log analysis
 
 ---
 
-## Repository Structure
+## 🔍 Overview
 
-### `Sherlock/`
-Blue Team investigation work for **HTB Sherlock challenges**.
+This project focuses on building real-world, job-relevant skills through:
+- HTB machine walkthroughs (enumeration → exploitation → privilege escalation)
+- Blue team investigations and log analysis
+- Python-based automation and tooling
+- Enterprise-style networking labs (GNS3)
+
+---
+
+## 📁 Repository Structure
+
+### `/Machines`
+Detailed walkthroughs of Hack The Box machines:
+- Step-by-step methodology
+- Enumeration techniques (Nmap, Gobuster, etc.)
+- Exploitation paths
+- Privilege escalation methods
+- Post-exploitation notes
+
+---
+
+### `/Sherlock`
+Blue Team investigation labs:
 - Log analysis
 - Email forensics
 - IOC extraction
 - Timeline reconstruction
-- Threat actor behaviour analysis
-- Notes and scripts used during investigations
-
-These scripts are designed to assist with **SOC-style triage and analysis**, not just challenge completion.
+- Threat behaviour analysis
 
 ---
 
-### `Scripts/`
-Custom security scripts written in **Python and Bash**, focused on:
-- Security automation
-- Blue team tooling (email triage, log parsing, IOC extraction)
-- Detection helpers
-- Penetration testing support scripts
-- Workflow optimisation for labs and investigations
+### `/Scripts`
+Custom-built security and networking tools:
 
-Scripts here are built with a **defender mindset**, even when used in offensive contexts.
+**Includes:**
+- TCP Port Scanner (multi-threaded + banner grabbing)
+- SSH log analysis & attack detection (brute force / password spray)
+- Subnet calculator (GUI-based)
 
----
-
-### `Machines/`
-Notes, commands, and methodology used while working through **HTB Machines**.
-- Enumeration steps
-- Exploitation paths
-- Privilege escalation techniques
-- Post-exploitation observations
+**Focus:**
+- Automation
+- Detection engineering
+- SOC-style tooling
 
 ---
 
-### `SSH/`
-SSH-related notes, configurations, and experiments used during labs and testing.
+### `/GNS3`
+Enterprise network lab:
+- VLAN segmentation
+- Inter-VLAN routing (router-on-a-stick)
+- DHCP configuration
+- NAT for internet access
+- OSPF routing
+- Python network automation (Netmiko)
 
 ---
 
+### `/SSH`
+Linux server and security lab:
+- SSH configuration and monitoring
+- Log collection and transfer
+- Attack detection using Python
+- Alert generation and reporting
+
 ---
 
-## Goals of This Repository
+### `/Wireshark`
+Packet analysis notes and investigations:
+- Traffic inspection
+- Protocol analysis
+- Network troubleshooting
 
-- Build **SOC-relevant automation tools**
-- Improve **blue team Python scripting**
+---
+
+## 🧠 Skills Demonstrated
+
+### 🔵 Blue Team / SOC
+- Log analysis (auth.log, SSH logs)
+- Brute force & password spray detection
+- IOC identification
+- Incident investigation workflows
+
+### 🌐 Networking
+- VLANs and subnetting
+- DHCP, NAT, OSPF
+- Routing and switching fundamentals
+- GNS3 lab design
+
+### 🐍 Python Development
+- Automation scripts
+- Network scanning tools
+- Log parsing & detection logic
+- CLI and GUI tools (Tkinter)
+
+### 🛠 Tools & Technologies
+- Nmap, Gobuster
+- Wireshark
+- Linux (Ubuntu / Kali)
+- Cisco IOS (GNS3)
+- Netmiko (network automation)
+
+---
+
+## 🚀 Goals
+
+- Build SOC-ready automation tools
+- Improve Python scripting for security
 - Develop repeatable investigation workflows
-- Document real-world security techniques
-- Create a professional portfolio demonstrating hands-on capability
+- Strengthen networking + cloud fundamentals
+- Create a job-ready cybersecurity portfolio
 
 ---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
-All content in this repository is for **educational and ethical security research purposes only**.
+This repository is for **educational and ethical use only**.
 
-- No scripts are intended for unauthorized use
-- All testing is performed on **owned systems, lab environments, or platforms where I have explicit permission**
-
----
-
-## Skills Demonstrated
-
-- Blue Team / SOC analysis
-- Email & log forensics
-- Python security scripting
-- Automation for security workflows
-- Offensive security fundamentals
-- Threat detection mindset
+- All testing is performed in lab environments or platforms like Hack The Box
+- No tools or scripts are intended for unauthorized use
 
 ---
 
-## Notes
+## 👤 Author
 
-This repository is **actively maintained and evolving** as I continue learning, refining scripts, and improving automation for security operations.
-
+Ethan Cutting  
+Cybersecurity & IT Graduate (2025)  
+Focused on Blue Team, Networking, and Cloud
