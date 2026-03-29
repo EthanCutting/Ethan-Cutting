@@ -39,11 +39,18 @@ PCs / Ubuntu -> SW2 -> SW1 -> R1 -> R2 -> Internet
 
 ---
 ## Router1
+### Sub-Interface
+ <img width="340" height="1021" alt="subinterface" src="https://github.com/user-attachments/assets/863e9835-7c01-48c3-934b-c7b00c849f5b" />
+
+
+### DHCP
+<img width="285" height="244" alt="dhcp" src="https://github.com/user-attachments/assets/ea632634-e65d-4e67-96f3-36932c70df1c" />
 
 ---
 ## Router2
+<img width="503" height="1010" alt="r2" src="https://github.com/user-attachments/assets/85573f5a-61e6-4051-ad75-8e26735d84ba" />
 
---
+---
 ## Ubuntu
 
 ---
