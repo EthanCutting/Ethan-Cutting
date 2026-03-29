@@ -33,6 +33,18 @@ PCs / Ubuntu -> SW2 -> SW1 -> R1 -> R2 -> Internet
 ## Switch1
 <img width="488" height="1143" alt="switch1" src="https://github.com/user-attachments/assets/bd2b4b38-30f2-43a6-8086-a09e9f0c15c0" />
 
+---
+## Switch2
+<img width="548" height="1220" alt="switch2" src="https://github.com/user-attachments/assets/76209a40-ce60-4340-b8d7-c9eb19d2bdff" />
+
+---
+## Router1
+
+---
+## Router2
+
+--
+## Ubuntu
 
 ---
 # Python Script
