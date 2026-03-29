@@ -3,6 +3,7 @@
 This lab demonstrates a small enterprise network in GNS3 using two switches, VLAN segmentation, inter-VLAN routing, DHCP, and NAT.
 ---
 ## Topology
+<img width="934" height="491" alt="lab02" src="https://github.com/user-attachments/assets/1c721b5a-6786-41f8-9d44-b0cf681c103a" />
 
 PCs / Ubuntu -> SW1 -> SW2 -> R1 -> R2 -> Internet
 
