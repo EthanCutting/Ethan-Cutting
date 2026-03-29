@@ -97,7 +97,18 @@ Overall, this section handlers:
 ## Router2
 <img width="503" height="1010" alt="r2" src="https://github.com/user-attachments/assets/85573f5a-61e6-4051-ad75-8e26735d84ba" />
 
+Router2 acts as the edge router that connects the internal network to the internet (via NAT). It sits between Router1 and the NAT cloud and is resonsible for forwarding traffic outside the network. 
+I configured a point-to-point link between Router1 and Router2 using the 10.0.12.0/30 network. Router2 then uses NAT (overload) to translate internal private IP addresses (192.168.0.0) into public-facing address on its external interface.
+An access list was created to define which internal networks are allowed to be translated, and NAT is applied so multiple inernal devices can share a single external IP.
+A static route was also configured so Router2 knows how to reach the internal VLAN networks through Router1.
 
+Overall, Router2 is responsible for:
+- NAT (PAT) for internet access
+- Translating private IPs to public IP
+- Routing traffic between internal network and internet
+- Acting as the network edge device
+
+  
 ---
 ## Ubuntu
 
