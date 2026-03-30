@@ -24,6 +24,8 @@ buidling a multi-site network with:
 | Default Routing | Directed unknown traffic toward the ISP router |
 | Switch Management | Configured management IP addresses on switches |
 | Ubuntu Admin Host | Used for testing, management, and later automation |
+| ACL  |  |
+| Firewall  |  |
 
 ## Network Breakdown
 ### Left side (Admin/HQ)
