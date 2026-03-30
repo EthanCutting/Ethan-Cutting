@@ -85,20 +85,36 @@ This is key for:
 
 ---
 ## Commands
-### Router1 Configuration
-
-### Switch1 XConfiguration
-
-### Switch2 Configuration
-
-
-### Switch3 Configuration
-
-### VPCS Configuration
-
-
-### Ubuntu Configuration
-
+### Switch Config (SW1 / SW2 / SW3 Same)
+| Step | Command |
+|------|--------|
+| 1 | enable |
+| 2 | configure terminal |
+| 3 | vlan 10 |
+| 4 | name USERS |
+| 5 | vlan 20 |
+| 6 | name ADMIN |
+| 7 | vlan 30 |
+| 8 | name SERVER |
+| 9 | interface range e0/1-2 |
+| 10 | switchport mode access |
+| 11 | switchport access vlan 10 |
+| 12 | exit |
+| 13 | interface e0/3 |
+| 14 | switchport mode access |
+| 15 | switchport access vlan 20 |
+| 16 | exit |
+| 17 | interface e0/0 |
+| 18 | switchport trunk encapsulation dot1q |
+| 19 | switchport mode trunk |
+| 20 | exit |
+| 21 | interface vlan 1 |
+| 22 | ip address 192.168.X.100 255.255.255.0 |
+| 23 | no shutdown |
+| 24 | exit |
+| 25 | ip default-gateway 192.168.X.1 |
+| 26 | end |
+| 27 | write memory |
 
 
 ---
