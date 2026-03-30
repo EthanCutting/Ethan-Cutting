@@ -42,8 +42,25 @@ What this part is:
 R1 = core router / distribution layer
 
 ### Middle (ISP)
+Device:
+- ISP Router
+What this does:
+- Connects ALL networks together
+- Simulates the internet
+- Where you would do:
+  - NAT (VERY important)
+  - Default routing
 
 ### Right side (Branch)
-
+Devices:
+- R3
+- Switch3
+- PC2
+What this side is:
+- A remote branch office
+- Separate network from HQ
+This is key for:
+- Routing (OSPF or static)
+- Security rules
 
 ---
