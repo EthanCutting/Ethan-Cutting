@@ -78,3 +78,22 @@ This is key for:
 | Ubuntu  | ens3      | 192.168.10.10   | 255.255.255.0   | 192.168.10.254  |
 
 ---
+## Commands
+### Router1 Configuration
+| Step | Command |
+|------|--------|
+| 1 | enable |
+| 2 | configure terminal |
+| 3 | hostname R1 |
+| 4 | interface g0/0 |
+| 5 | ip address 192.168.10.254 255.255.255.0 |
+| 6 | no shutdown |
+| 7 | exit |
+| 8 | interface g0/1 |
+| 9 | ip address 192.168.20.254 255.255.255.0 |
+| 10 | no shutdown |
+| 11 | exit |
+| 12 | end |
+| 13 | write memory |
+
+---
