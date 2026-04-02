@@ -9,6 +9,7 @@ when they are connected, devices can communicate and share resources.It supports
 
 ## Switching basic
 
+
 ## VLANs
 
 ## Trunks
@@ -46,3 +47,21 @@ when they are connected, devices can communicate and share resources.It supports
 ## 802.1Q tagging 
 
 ##
+
+
+---
+# Inter-VLAN Routing
+
+---
+# Switching Basic
+
+---
+# STP
+
+---
+# EtherChannel
+
+
+---
+# Wireless Basic
+
