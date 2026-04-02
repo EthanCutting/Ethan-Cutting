@@ -63,10 +63,14 @@ so it is received by:
 ## Commands Used
 - Show mac address-table
 - show mac address-table dynamic
+
 Switch1
+
 <img width="357" height="107" alt="sw1" src="https://github.com/user-attachments/assets/f848eac4-cbeb-4768-910f-8a707bfae04b" />
 
+
 Switch2
+
 <img width="375" height="94" alt="sw2" src="https://github.com/user-attachments/assets/26f8a93b-c855-4462-9947-2c4436638227" />
 
 
