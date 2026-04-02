@@ -173,62 +173,319 @@ By default on many Cisco switches, VLAN 1 is the native VLAN unless it is change
 | Access Port | Carries traffic for one VLAN only. Usually connects to end devices such as PCs, printers, or phones. |
 | Trunk Port  | Carries traffic for multiple VLANs. Usually connects to other switches, routers, or multilayer switches. |
 
-### Simple example
+### Example
 - A PC connected to F0/1 uses an **access port**
 - A link between SW1 and SW2 uses a **trunk port**
 
 
 ---
 # Inter-VLAN Routing
-why VLANs cannot talk without a Layer 3 device
-router-on-a-stick
-multilayer switch idea
-subinterfaces
-default gateway for each VLAN
+
+## Why VLANs cannot talk without a Layer 3 device
+Each VLAN is a separate broadcast domain and usually a separate IP subnet. Devices in the same VLAN can communicate directly at Layer 2, but devices in different VLANs cannot communicate without a Layer 3 device.
+
+A Layer 3 device, such as a router or multilayer switch, is needed to route traffic between VLANs. This process is called **inter-VLAN routing**.
+
+For example:
+- PC in VLAN 10 can talk to other devices in VLAN 10 directly
+- PC in VLAN 10 cannot talk to a device in VLAN 20 unless traffic is routed
+
+## Router-on-a-Stick
+Router-on-a-stick is a method of inter-VLAN routing that uses:
+- one physical router interface
+- one trunk link between the router and switch
+- multiple subinterfaces on the router
+
+Each subinterface is configured for a different VLAN and acts as the default gateway for that VLAN.
+
+Example:
+- G0/0.10 for VLAN 10
+- G0/0.20 for VLAN 20
+- G0/0.30 for VLAN 30
+
+This is common in labs and smaller networks.
+
+## Multilayer switch idea
+A multilayer switch can perform both Layer 2 switching and Layer 3 routing. Instead of sending VLAN traffic to an external router, the multilayer switch routes traffic internally.
+
+This is usually faster and more scalable than router-on-a-stick, especially in larger networks.
+
+A multilayer switch uses **SVIs (Switched Virtual Interfaces)** as the default gateways for VLANs.
+
+## Subinterfaces
+Subinterfaces are logical interfaces created on a single physical router interface.
+
+Each subinterface:
+- is assigned to a VLAN
+- uses 802.1Q encapsulation
+- has an IP address that acts as the default gateway for that VLAN
+
+Example:
+- interface G0/0.10
+- encapsulation dot1Q 10
+- ip address 192.168.10.1 255.255.255.0
+
+## Default gateway for each VLAN
+Each VLAN needs its own default gateway so devices can send traffic to other networks or VLANs.
+
+Example:
+| VLAN | Subnet | Default Gateway |
+|------|--------|-----------------|
+| 10   | 192.168.10.0/24 | 192.168.10.1 |
+| 20   | 192.168.20.0/24 | 192.168.20.1 |
+| 30   | 192.168.30.0/24 | 192.168.30.1 |
+
+Without a default gateway, devices can only communicate inside their own VLAN.
+
 
 ---
-# Switching Basic
-MAC address table
-how a switch learns MAC addresses
-unicast, broadcast, unknown unicast
-collision domain
-broadcast domain
+# Switching Basics
+
+## MAC address table
+A switch uses a **MAC address table** to keep track of which MAC addresses are connected to which ports.
+
+This helps the switch send frames only where they need to go instead of flooding all traffic everywhere.
+
+The MAC address table contains:
+- MAC addresses
+- associated switch ports
+- VLAN information
+
+## How a switch learns MAC addresses
+A switch learns MAC addresses by looking at the **source MAC address** of frames that arrive on its ports.
+
+Example:
+- if a frame enters F0/1 from PC1, the switch learns PC1’s MAC address on F0/1
+- if a frame enters F0/2 from PC2, the switch learns PC2’s MAC address on F0/2
+
+This process is called **MAC learning**.
+
+If the destination MAC is unknown, the switch floods the frame out all other ports in that VLAN.
+
+## Unicast, broadcast, unknown unicast
+### Unicast
+A unicast frame is sent from one device to one specific device.
+
+### Broadcast
+A broadcast frame is sent from one device to all devices in the same broadcast domain.
+
+Example:
+- ARP Request
+
+### Unknown unicast
+An unknown unicast happens when the switch does not know the destination MAC address yet. The switch floods the frame out all ports in the same VLAN except the port it came in on.
+
+## Collision domain
+A collision domain is the area where data collisions can occur.
+
+With switches:
+- each switch port is its own collision domain
+
+This improves performance compared to older hub-based networks.
+
+## Broadcast domain
+A broadcast domain is the area in which a broadcast frame can travel.
+
+By default:
+- all ports in the same VLAN are in the same broadcast domain
+- each VLAN is a separate broadcast domain
 
 ---
 # STP
-why STP exists
-switching loops
-broadcast storms
-root bridge
-blocked ports
-forwarding ports
-STP vs RSTP basic difference
+
+## Why STP exists
+STP stands for **Spanning Tree Protocol**. It exists to prevent Layer 2 loops in switched networks.
+
+When redundant links are added between switches for backup and reliability, loops can occur. STP prevents these loops by blocking certain redundant paths.
+
+## Switching loops
+A switching loop happens when there is more than one active path between switches and frames keep circulating endlessly.
+
+This can cause serious network problems because switches forward broadcast and unknown unicast traffic repeatedly.
+
+## Broadcast storms
+A broadcast storm happens when broadcast traffic loops continuously through the network.
+
+This can:
+- consume bandwidth
+- overload switch CPUs
+- make the network unusable
+
+Broadcast storms are one of the main reasons STP is necessary.
+
+## Root bridge
+STP elects one switch to become the **root bridge**.
+
+The root bridge is the central reference point for the spanning tree. All other switches calculate the best path back to the root bridge.
+
+The switch with the best bridge ID becomes the root bridge.
+
+## Blocked ports
+To prevent loops, STP places some redundant ports into a **blocking state**.
+
+A blocked port:
+- does not forward normal traffic
+- helps prevent loops
+- can become active if the active path fails
+
+## Forwarding ports
+Ports that are part of the active path remain in the **forwarding state**.
+
+A forwarding port:
+- sends and receives traffic
+- learns MAC addresses
+- forwards user traffic
+
+## STP vs RSTP basic difference
+### STP
+Classic STP works, but it is slower to respond to network changes.
+
+### RSTP
+RSTP stands for **Rapid Spanning Tree Protocol**. It performs the same main function as STP but converges much faster when the network changes.
+
+### Key idea
+- STP = loop prevention
+- RSTP = faster loop prevention and faster recovery
 
 ---
 # EtherChannel
-what EtherChannel is
-why it is used
-load balancing idea
-LACP vs PAgP
+
+## What EtherChannel is
+EtherChannel is a technology that bundles multiple physical links together into one logical link.
+
+Instead of using each cable separately, the switch treats them as a single connection.
+
+## Why it is used
+EtherChannel is used to:
+- increase bandwidth
+- provide redundancy
+- reduce the risk of STP blocking individual redundant links
+- make links between switches more efficient
+
+If one physical link in the bundle fails, the EtherChannel can continue using the remaining links.
+
+## Load balancing idea
+EtherChannel can distribute traffic across multiple physical links in the bundle. This helps improve performance by sharing the traffic load.
+
+The links act as one logical interface, but traffic is balanced across the available member links.
+
+## LACP vs PAgP
+### LACP
+LACP stands for **Link Aggregation Control Protocol**.
+
+- open standard
+- defined by IEEE 802.3ad
+- can be used on different vendors’ devices
+
+### PAgP
+PAgP stands for **Port Aggregation Protocol**.
+
+- Cisco proprietary
+- used mainly on Cisco devices
+
+### Key difference
+- **LACP** = industry standard
+- **PAgP** = Cisco proprietary
 
 ---
-# Wireless Basic
-AP
-WLC
-SSID
-WPA2/WPA3
-lightweight AP vs autonomous AP
+# Wireless Basics
+
+## AP
+An **AP (Access Point)** allows wireless devices to connect to a wired network using Wi-Fi.
+
+It acts as a bridge between wireless clients and the LAN.
+
+Examples of wireless clients:
+- laptops
+- phones
+- tablets
+
+## WLC
+A **WLC (Wireless LAN Controller)** is used to centrally manage multiple access points.
+
+It helps with:
+- configuration
+- security policies
+- roaming
+- monitoring
+- firmware management
+
+This is common in larger enterprise wireless networks.
+
+## SSID
+SSID stands for **Service Set Identifier**.
+
+It is the name of the wireless network that users see when trying to connect to Wi-Fi.
+
+Example:
+- OfficeWiFi
+- GuestWiFi
+
+## WPA2/WPA3
+WPA2 and WPA3 are wireless security standards used to protect Wi-Fi networks.
+
+### WPA2
+- older but still widely used
+- provides authentication and encryption
+
+### WPA3
+- newer and more secure
+- improves wireless protection
+
+## Lightweight AP vs autonomous AP
+### Lightweight AP
+A lightweight AP is managed by a WLC.
+
+It depends on the controller for much of its configuration and management.
+
+### Autonomous AP
+An autonomous AP is managed individually.
+
+Each AP is configured separately, without a central controller.
+
+### Key difference
+- lightweight AP = controller-based
+- autonomous AP = standalone
 
 ---
-# Port Secruity
-what it does
-limiting MAC addresses
-sticky MAC
-violation modes
+# Port Security
+
+## What it does
+Port security is a switch feature that helps control which devices are allowed to connect to a switch port.
+
+It improves security by limiting the MAC addresses that can use a port.
+
+## Limiting MAC addresses
+With port security, an administrator can define how many MAC addresses are allowed on a port.
+
+For example:
+- only 1 MAC address allowed on a port
+- only 2 MAC addresses allowed on a port
+
+If too many MAC addresses appear, the switch can take action.
+
+## Sticky MAC
+Sticky MAC allows the switch to dynamically learn MAC addresses on a port and save them as secure MAC addresses.
+
+This makes configuration easier because the administrator does not need to manually enter every MAC address.
+
+## Violation modes
+A violation happens when an unauthorized MAC address tries to use the port.
+
+Common violation modes include:
+
+### Protect
+Drops traffic from unauthorized MAC addresses, but does not send an alert.
+
+### Restrict
+Drops unauthorized traffic and can log the violation or increase the violation counter.
+
+### Shutdown
+Places the port into an error-disabled state. This is the default and most secure mode.
 
 
 ---
-# Key Commands
+## Key Commands
 - show vlan brief
 - show interfaces trunk
 - show mac address-table
