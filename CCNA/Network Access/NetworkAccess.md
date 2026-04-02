@@ -9,9 +9,6 @@ when they are connected, devices can communicate and share resources.It supports
 
 ## Switching basic
 
-
-## VLANs
-
 ## Trunks
 
 ## Wireless Basic 
@@ -22,20 +19,95 @@ when they are connected, devices can communicate and share resources.It supports
 
 # VLANs
 ## What a VLAN is
+A VLAN (Virtual Local Area Network) is a logical way to divide a switch network into separate broadcast domains. Devices can be connected to the same physical switch but placed in different VLANs so they behave as if they are on separate networks.
+
+This improves network organization and allows administrators to separate groups of users without needing separate physical switches for each group.
 
 ## Why VLANs are used 
+VLANs are used to:
+- improve security by separating users and departments
+- reduce broadcast traffic
+- make the network easier to manage
+- organize devices by department or role
+- separate different types of traffic, such as voice and data
+
+For example, HR devices can be placed in one VLAN, Sales in another, and Admin in another. This keeps traffic logically separated.
 
 ## Access port
+An access port is a switch port that belongs to a single VLAN. It is usually connected to end devices such as:
+- PCs
+- printers
+- IP phones
+- servers
+
+Traffic sent on an access port is not tagged with multiple VLAN information. The device connected to that port simply becomes part of the configured VLAN.
+
+Example:
+- If interface F0/1 is configured as an access port in VLAN 10, then any PC connected to F0/1 belongs to VLAN 10.
 
 ## VLAN membership
+VLAN membership means assigning a device or switch port to a specific VLAN.
+
+For example:
+- PC on F0/1 → VLAN 10
+- PC on F0/2 → VLAN 20
+- PC on F0/3 → VLAN 30
+
+A device becomes part of a VLAN based on the port it is connected to, unless more advanced methods are used. On the CCNA, you will usually work with port-based VLAN membership.
 
 ## Default VLAN
+The default VLAN on Cisco switches is usually VLAN 1.
+Key points:
+- all switch ports are in VLAN 1 by default
+- VLAN 1 exists automatically
+- it is best practice not to use VLAN 1 for normal user traffic in production networks
+
+VLAN 1 is commonly used at the start of labs, but in real networks it is better to move user devices into other VLANs.
 
 ## Native VLAN
+The native VLAN is used on an 802.1Q trunk port. Frames in the native VLAN are sent untagged by default.
+
+Key points:
+- trunk ports carry traffic for multiple VLANs
+- most VLAN traffic is tagged
+- native VLAN traffic is untagged
+- both ends of the trunk should use the same native VLAN
+
+If the native VLAN does not match on both ends, it can cause communication and security issues.
 
 ## Voice VLAN
+A voice VLAN is a special VLAN used for IP phone traffic.
+
+It is used to:
+- separate voice traffic from normal data traffic
+- improve voice quality
+- make it easier to apply QoS policies
+
+A common setup is:
+- the IP phone uses the voice VLAN
+- the PC connected through the phone uses the data VLAN
+
+This allows one switch port to support both a phone and a PC while keeping the traffic separated.
 
 ## Example of separating departments like HR, Sales, Admin
+A company may use VLANs to separate departments like this:
+
+| Department | VLAN ID | Subnet |
+|-----------|---------|--------|
+| HR        | 10      | 192.168.10.0/24 |
+| Sales     | 20      | 192.168.20.0/24 |
+| Admin     | 30      | 192.168.30.0/24 |
+
+In this design:
+- HR users are placed in VLAN 10
+- Sales users are placed in VLAN 20
+- Admin users are placed in VLAN 30
+
+This means:
+- broadcasts from HR stay inside VLAN 10
+- Sales traffic stays in VLAN 20
+- Admin traffic stays in VLAN 30
+- communication between VLANs requires inter-VLAN routing
 
 ---
 
@@ -51,17 +123,58 @@ when they are connected, devices can communicate and share resources.It supports
 
 ---
 # Inter-VLAN Routing
+why VLANs cannot talk without a Layer 3 device
+router-on-a-stick
+multilayer switch idea
+subinterfaces
+default gateway for each VLAN
 
 ---
 # Switching Basic
+MAC address table
+how a switch learns MAC addresses
+unicast, broadcast, unknown unicast
+collision domain
+broadcast domain
 
 ---
 # STP
+why STP exists
+switching loops
+broadcast storms
+root bridge
+blocked ports
+forwarding ports
+STP vs RSTP basic difference
 
 ---
 # EtherChannel
-
+what EtherChannel is
+why it is used
+load balancing idea
+LACP vs PAgP
 
 ---
 # Wireless Basic
+AP
+WLC
+SSID
+WPA2/WPA3
+lightweight AP vs autonomous AP
 
+---
+# Port Secruity
+what it does
+limiting MAC addresses
+sticky MAC
+violation modes
+
+
+---
+# Key Commands
+- show vlan brief
+- show interfaces trunk
+- show mac address-table
+- show spanning-tree
+- show etherchannel summary
+- show port-security
