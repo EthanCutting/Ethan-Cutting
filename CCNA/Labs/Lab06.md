@@ -60,6 +60,6 @@ so it is received by:
 
 ---
 
-# Commands Used
+## Commands Used
 - Show mac address-table
 - show mac address-table dynamic
