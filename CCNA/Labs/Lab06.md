@@ -61,8 +61,7 @@ so it is received by:
 ---
 
 ## Commands Used
-- Show mac address-table
-- show mac address-table dynamic
+### Show mac address-table & show mac address-table dynamic
 
 Switch1
 
