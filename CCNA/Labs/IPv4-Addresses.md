@@ -99,5 +99,3 @@ This lab teaches the basics of:
 - testing connectivity with pings
 - seeing how a router forwards traffic between different networks
 
-### Simple summary
-The router acts as the central device that connects three separate IP networks. Each router interface belongs to one network and serves as that network’s gateway. When a PC needs to reach a different network, it sends the traffic to the router, and the router forwards it out the correct interface.
