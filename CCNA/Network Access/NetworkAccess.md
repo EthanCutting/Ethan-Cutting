@@ -11,7 +11,8 @@
 
 ## Redundancy in switched network
 
---
+---
+
 # VLANs
 ## What a VLAN is
 
