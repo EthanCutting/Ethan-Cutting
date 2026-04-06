@@ -130,7 +130,7 @@ ls
 cat user.txt
 ```
 
-✅ **User flag obtained**
+**User flag find**
 
 ---
 
@@ -169,7 +169,7 @@ ls -la
 cat root.txt
 ```
 
-🎉 **Root flag successfully retrieved!**
+**Root flag successfully retrieved!**
 
 ---
 
