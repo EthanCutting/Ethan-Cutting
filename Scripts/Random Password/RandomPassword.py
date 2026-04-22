@@ -1,7 +1,7 @@
 import string
 import random 
 
-# This is for getting the password length from user
+
 store1 = list(string.ascii_lowercase)
 store2 = list(string.ascii_uppercase)
 store3 = list(string.digits)
